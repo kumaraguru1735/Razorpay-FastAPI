@@ -2,14 +2,14 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 import razorpay
 from pydantic import BaseModel
+#Environment Variables
 from dotenv import load_dotenv
 import os
 
-
 load_dotenv()
-razorpay_key_id = os.environ.get("RAZORPAY_KEY_ID")
-razorpay_key_secret = os.environ.get("RAZORPAY_KEY_SECRET")
 
+RAZORPAY_KEY_ID = os.environ.get("RAZORPAY_ID")
+RAZORPAY_KEY_SECRET = os.environ.get("RAZORPAY_SECRECT")
 
 class CreateOrder(BaseModel):
     amount: int
@@ -22,7 +22,8 @@ class DeleteOrder(BaseModel):
     order_id: str
 
 app = FastAPI()
-client = razorpay.Client(auth=(razorpay_key_id, razorpay_key_secret))
+
+client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET))
 
 @app.get("/")
 def read_root():
@@ -31,7 +32,6 @@ def read_root():
 @app.post("/create_order")
 def create_order(input: CreateOrder):
     payment = client.order.create({'amount': input.amount, 'currency': input.currency, 'payment_capture': '1'})
-    print(payment)
     return payment
 
 @app.post("/verify_order")
