@@ -31,7 +31,7 @@ def read_root():
 
 @app.post("/create_order")
 def create_order(input: CreateOrder):
-    payment = client.order.create({'amount': input.amount, 'currency': input.currency, 'payment_capture': '1'})
+    payment = client.order.create({'amount': input.amount * 100, 'currency': input.currency, 'payment_capture': '1'})
     return payment
 
 @app.post("/verify_order")
