@@ -4,7 +4,7 @@ import razorpay
 from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
-load_dotenv(".env")
+load_dotenv()
 razorpay_key_id = os.getenv("RAZORPAY_KEY_ID")
 razorpay_key_secret = os.getenv("RAZORPAY_KEY_SECRET")
 
