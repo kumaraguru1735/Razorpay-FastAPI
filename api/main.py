@@ -4,9 +4,11 @@ import razorpay
 from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
+
+
 load_dotenv()
-razorpay_key_id = os.getenv("RAZORPAY_KEY_ID")
-razorpay_key_secret = os.getenv("RAZORPAY_KEY_SECRET")
+razorpay_key_id = os.environ.get("RAZORPAY_KEY_ID")
+razorpay_key_secret = os.environ.get("RAZORPAY_KEY_SECRET")
 
 
 class CreateOrder(BaseModel):
