@@ -1,7 +1,7 @@
 FROM python:3.9
 #Environmental Variables
-ENV RAZORPAY_KEY = RAZORPAY_KEY
-ENV RAZORPAY_PASS = RAZORPAY_PASS
+ENV RAZORPAY_KEY=RAZORPAY_KEY
+ENV RAZORPAY_PASS=RAZORPAY_PASS
 
 COPY ./requirements.txt /api/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /api/requirements.txt
