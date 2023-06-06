@@ -26,11 +26,11 @@ app = FastAPI()
 client = razorpay.Client(auth=(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET))
 
 @app.get("/")
-def read_root():
+async def read_root():
     return {"Hello": "World"}
 
 @app.post("/create_order")
-def create_order(input: CreateOrder):
+async def create_order(input: CreateOrder):
     payment = client.order.create({'amount': input.amount * 100, 'currency': input.currency, 'payment_capture': '1'})
     return payment
 
